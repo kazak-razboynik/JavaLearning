@@ -2,9 +2,9 @@ package userNumbers;
 
 import java.util.Scanner;
 
-public class numbersToN {
+public class NumbersToN {
     public static void main(String[] args) {
-        numbersToN.sum();
+        NumbersToN.sum();
     }
 
     public static void sum() {
@@ -29,4 +29,3 @@ public class numbersToN {
             }
         }
     }
-// Числа от 1 до N
