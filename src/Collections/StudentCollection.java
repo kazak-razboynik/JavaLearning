@@ -9,11 +9,11 @@ public class StudentCollection {
     private static void printMenu() {
         // Выводим меню выбора опций работы с программой
         System.out.println("""
-            Для работы с коллекцией студентов выбери пункт:"
-            1 - Добавить ФИО студента
-            2 - Вывести коллекцию студентов
-            3 - Удалить ФИО студента
-            0 - Завершить работу программы""");
+                Для работы с коллекцией студентов выбери пункт:"
+                1 - Добавить ФИО студента
+                2 - Вывести коллекцию студентов
+                3 - Удалить ФИО студента
+                0 - Завершить работу программы""");
     }
 
     // Метод для обработки логики 1 пункта
@@ -37,20 +37,27 @@ public class StudentCollection {
             return;
         }
         System.out.println(text);
+        String name = scanner.next();
+        if (list.remove(name)) {
+            System.out.println(name + " ликвидирован");
+        } else {
+            System.out.println("его нет");
+        }
 
-        if (scanner.hasNextInt()){
+        /*
+        if (scanner.hasNextInt()) {
             int idStudent = scanner.nextInt();
             scanner.nextLine();
 
             if (idStudent >= 1 && idStudent <= list.size()) {
-             System.out.println("Удален: " + list.remove(idStudent - 1));
+                System.out.println("Удален: " + list.remove(idStudent - 1));
             } else {
                 System.out.println("Нет записи под таким номером");
             }
         } else {
             System.out.println("Это не является числом");
             scanner.next();
-        }
+        }*/
     }
 
     // Метод для обработки логики 2 пункта
@@ -83,25 +90,27 @@ public class StudentCollection {
 
         System.out.println("Привет!");
 
-        while(run) {
+        while (run) {
             printMenu();
+            int menu = 0;
+            try {
+                menu = scanner.nextInt();
+            } catch (Exception InputMismatchException) {
+                System.out.println("Ты не ввел число");
+            }
             // Проверяем содержит ли ввод числа
-                // Цикл для обработки логики каждого пункта
-                switch (scanner.nextInt()) {
-                    case 1 ->
-                            firstNumberOfMenu(scanner, students);
-                    case 2 ->
-                            secondNumberOfMenu(students);
-                    case 3 ->
-                            thirdNumberOfMenu(scanner, students);
-                    case 0 -> {
-                            run = false;
-                            zeroNumberOfMenu();
-                    }
-                    default ->
-                            wrongNumberOfMenu();
+            // Цикл для обработки логики каждого пункта
+            switch (menu) {
+                case 1 -> firstNumberOfMenu(scanner, students);
+                case 2 -> secondNumberOfMenu(students);
+                case 3 -> thirdNumberOfMenu(scanner, students);
+                case 0 -> {
+                    run = false;
+                    zeroNumberOfMenu();
                 }
+                default -> wrongNumberOfMenu();
             }
         }
     }
+}
 
